@@ -1,0 +1,23 @@
+/home/arthur/testeIonic/teste/platforms/android/ant-build/classes.dex : \
+/home/arthur/testeIonic/teste/platforms/android/ant-build/classes/io/liteglue/SQLitePlugin$SQLiteDatabaseNDK.class \
+/home/arthur/testeIonic/teste/platforms/android/ant-build/classes/io/liteglue/SQLitePlugin$DBRunner.class \
+/home/arthur/testeIonic/teste/platforms/android/ant-build/classes/io/liteglue/SQLitePlugin$1.class \
+/home/arthur/testeIonic/teste/platforms/android/ant-build/classes/io/liteglue/SQLitePlugin$DBQuery.class \
+/home/arthur/testeIonic/teste/platforms/android/ant-build/classes/io/liteglue/SQLitePlugin$Action.class \
+/home/arthur/testeIonic/teste/platforms/android/ant-build/classes/io/liteglue/SQLitePlugin.class \
+/home/arthur/testeIonic/teste/platforms/android/ant-build/classes/io/liteglue/SQLiteAndroidDatabase.class \
+/home/arthur/testeIonic/teste/platforms/android/ant-build/classes/io/liteglue/SQLiteAndroidDatabase$QueryType.class \
+/home/arthur/testeIonic/teste/platforms/android/ant-build/classes/com/ionic/keyboard/IonicKeyboard$1.class \
+/home/arthur/testeIonic/teste/platforms/android/ant-build/classes/com/ionic/keyboard/IonicKeyboard$2.class \
+/home/arthur/testeIonic/teste/platforms/android/ant-build/classes/com/ionic/keyboard/IonicKeyboard$3.class \
+/home/arthur/testeIonic/teste/platforms/android/ant-build/classes/com/ionic/keyboard/IonicKeyboard.class \
+/home/arthur/testeIonic/teste/platforms/android/ant-build/classes/com/ionicframework/teste121207/MainActivity.class \
+/home/arthur/testeIonic/teste/platforms/android/ant-build/classes/com/ionicframework/teste121207/R.class \
+/home/arthur/testeIonic/teste/platforms/android/ant-build/classes/com/ionicframework/teste121207/R$drawable.class \
+/home/arthur/testeIonic/teste/platforms/android/ant-build/classes/com/ionicframework/teste121207/R$xml.class \
+/home/arthur/testeIonic/teste/platforms/android/ant-build/classes/com/ionicframework/teste121207/R$string.class \
+/home/arthur/testeIonic/teste/platforms/android/ant-build/classes/com/ionicframework/teste121207/BuildConfig.class \
+/home/arthur/testeIonic/teste/platforms/android/ant-build/classes/com/ionicframework/teste121207/R$attr.class \
+/home/arthur/testeIonic/teste/platforms/android/ant-build/classes/org/apache/cordova/device/Device.class \
+/home/arthur/testeIonic/teste/platforms/android/ant-build/dexedLibs/classes-0523b196a9bc3eb335b78cf10f098ab6.jar \
+/home/arthur/testeIonic/teste/platforms/android/ant-build/dexedLibs/sqlite4java-a1ead7c45cc02e94e4da7231688f89bf.jar \
