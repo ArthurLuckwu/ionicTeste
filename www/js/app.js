@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 var db = null;
 
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova', 'angles'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova', 'angles', 'highcharts-ng'])
 
 .run(function($ionicPlatform, $cordovaSQLite) {
   $ionicPlatform.ready(function() {
