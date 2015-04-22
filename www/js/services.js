@@ -55,7 +55,38 @@ angular.module('starter.services', [])
 		    // return null;
 		}
 	}
-});
+})
+
+.factory('GetDadosGrafico', function($cordovaSQLite){
+	return{
+		all: function(){
+			db = $cordovaSQLite.openDB("my.db");
+		    var query = "SELECT mes, valor FROM grafico";
+		    return $cordovaSQLite.execute(db, query).then(function(result) {
+		    	resultado = [];	
+		    	if(result.rows.length > 0) {
+		        	for(var i = 0; i < result.rows.length; i++){
+		        		var r = {};
+		        		r.mes = result.rows.item(i).mes;
+		        		r.valor = result.rows.item(i).valor;
+		        		// $scope.mes.push(result.rows.item(i).mes);
+		        		// $scope.valor.push(result.rows.item(i).valor);
+		        		resultado.push(r);
+					}	
+		        }else{
+		            console.log("No results found");
+		            return null;
+		        }
+		        return resultado;
+		    }, function (err) {
+		        console.error(err);
+		    });
+		    // return null;
+		}
+	}
+})
+
+
 
 // .factory('Lista', function($cordovaSQLite){
 // 	db = $cordovaSQLite.openDB("my.db");

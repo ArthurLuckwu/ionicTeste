@@ -94,7 +94,6 @@ angular.module('starter.controllers', [])
 
 	$scope.insert = function(dados){
 		$scope.retorno = Banco.insert(dados)
-		alert($scope.retorno)
 	}
 
 	
@@ -105,11 +104,11 @@ angular.module('starter.controllers', [])
 	// }
 })
 
-.controller('Grafico', function($scope, $cordovaSQLite){
+.controller('Grafico', function($scope, $cordovaSQLite, GetDadosGrafico){
 	$scope.mes = [];
 	$scope.valor = [];
 	$scope.dados = [];
-	cor = ['blue', '#FFFF00', 'green', '#00BFFF', 'pink', 'orange', 'gray', '#FF5A5E', '#FDB45C', '#FFC870', '#5AD3D1', '#FF5A5E' ]
+	cor = ['blue', '#FFFF00', 'green', '#00BFFF', 'pink', 'orange', 'gray', '#FF5A5E', '#FDB45C', '#FFC870', '#5AD3D1', '#FF5A5E' ];
 
 	// $scope.inserir = function(){
 	// 	db = $cordovaSQLite.openDB("my.db");
@@ -125,83 +124,37 @@ angular.module('starter.controllers', [])
 	//     });
 	// }
 
-	// $scope.selectAll = function() {
- //    	db = $cordovaSQLite.openDB("my.db");
- //        var query = "SELECT mes, valor FROM grafico";
- //        $cordovaSQLite.execute(db, query).then(function(result) {
- //        	console.log('----RESULTADOS ----');
- //            if(result.rows.length > 0) {
- //            	// $scope.resultado = [];
- //            	$scope.resultado = []
- //            	for(var i = 0; i < result.rows.length; i++){
- //            		$scope.mes.push(result.rows.item(i).mes);
- //            		$scope.valor.push(result.rows.item(i).valor);
- //            	}	
+	GetDadosGrafico.all().then(function(resultado){
+		for(var i=0; i < resultado.length; i++){
+			var d= {
+		        value: resultado[i].valor,
+		        color: cor[i],
+		        highlight: "#90EE90",
+		        label: resultado[i].mes
+		    };
+		    $scope.dados.push(d);
+		    $scope.mes.push(resultado[i].mes);
+		    $scope.valor.push(resultado[i].valor);
+		}
 
- //            	// console.log("SELECTED -> " + result.rows.item(0).mes + " " + result.rows.item(0).lastname);
- //            }else{
- //                console.log("No results found");
- //            }
- //        }, function (err) {
- //            console.error(err);
- //        });
- //    }
-
- 	console.log("TESTE");
-
- 	db = $cordovaSQLite.openDB("my.db");
-    var query = "SELECT mes, valor FROM grafico";
-    $cordovaSQLite.execute(db, query).then(function(result) {
-    	console.log('----RESULTADOS ----');
-        if(result.rows.length > 0) {
-        	// $scope.resultado = [];
-        	$scope.resultado = []
-        	for(var i = 0; i < result.rows.length; i++){
-        		$scope.mes.push(result.rows.item(i).mes);
-        		$scope.valor.push(result.rows.item(i).valor);
-        		var d= {
-			        value: $scope.valor[i],
-			        color: cor[i],
-			        highlight: "#90EE90",
-			        label: $scope.mes[i]
-			    };
-			    console.log("mes i -> "+ $scope.mes[i]);
-			    console.log("valor i -> "+ $scope.valor[i]);
-			    $scope.dados.push(d);
-			    console.log("dados i -> "+ $scope.dados[i]);
-        	}	
-
-        	console.log("Mes len - "+$scope.mes.length);
-        }else{
-            console.log("No results found");
-        }
-    }, function (err) {
-        console.error(err);
-    });
-
-	$scope.chart = {
-	    // labels : ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-	    labels: $scope.mes,
-	    datasets : [
-	        {
-	            fillColor : "rgba(151,187,205,0)",
-	            strokeColor : "#e67e22",
-	            pointColor : "rgba(151,187,205,0)",
-	            pointStrokeColor : "#e67e22",
-	            data : $scope.valor
-	        }
-	        // {
-	        //     fillColor : "rgba(151,187,205,0)",
-	        //     strokeColor : "#f1c40f",
-	        //     pointColor : "rgba(151,187,205,0)",
-	        //     pointStrokeColor : "#f1c40f",
-	        //     data : [8, 3, 2, 5, 4]
-	        // }
-	    ], 
-	};
-
-	// $mes = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro']
-	// $valor = [10,20,30,40,50,60,70,80,90,80,90,100];
-	
-	
+		$scope.chart = {
+		    labels: $scope.mes,
+		    datasets : [
+		        {
+		            fillColor : "rgba(151,187,205,0)",
+		            strokeColor : "#e67e22",
+		            pointColor : "rgba(151,187,205,0)",
+		            pointStrokeColor : "#e67e22",
+		            data : $scope.valor
+		        }
+		    ] 
+		};
+	});
 })
+
+.controller('Highchart', function($scope){
+	$scope.teste = "Teste";
+	
+
+})
+
