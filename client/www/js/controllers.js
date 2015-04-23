@@ -162,26 +162,54 @@ angular.module('starter.controllers', [])
 			consumo.push(data.data[i].consumo)
 
 			var d= {
-		        value: data.data[i].bebida,
+		        value: data.data[i].consumo,
 		        color: cor[i],
 		        highlight: "#90EE90",
-		        label: data.data[i].consumo
+		        label: data.data[i].bebida
 		    };
 
-		    // $scope.dados.push(d);
+		    $scope.dados.push(d);
+		    
 		    // $scope.mes.push(resultado[i].mes);
 		    // $scope.valor.push(resultado[i].valor);
 
 		}
 
-		$scope.dados = [
-		{	
-			value: "teste",
-	        color: "azul",
-	        highlight: "#90EE90",
-	        label: "opa"
-	    }
-		]
+		console.log($scope.dados)
+
+		$scope.dadoss = [
+		    {
+		        value: 300,
+		        color:"#F7464A",
+		        highlight: "#FF5A5E",
+		        label: "Red"
+		    },
+		    {
+		        value: 50,
+		        color: "#46BFBD",
+		        highlight: "#5AD3D1",
+		        label: "Green"
+		    },
+		    {
+		        value: 100,
+		        color: "#FDB45C",
+		        highlight: "#FFC870",
+		        label: "Yellow"
+		    },
+		    {
+		        value: 40,
+		        color: "#949FB1",
+		        highlight: "#A8B3C5",
+		        label: "Grey"
+		    },
+		    {
+		        value: 120,
+		        color: "#4D5360",
+		        highlight: "#616774",
+		        label: "Dark Grey"
+		    }
+
+		];
 		
 
 		$scope.chart = {
@@ -340,13 +368,8 @@ angular.module('starter.controllers', [])
 			consumo.push(data.data[i].consumo)
 		}
 
-		// console.log(bebida)
-
-		$scope.chartConfig = {
-        
-		  options: {
-		      //This is the Main Highcharts chart config. Any Highchart options are valid here.
-		      //will be overriden by values specified below.
+		$scope.optionsColumn = {
+			options: {
 		      chart: {
 		          type: 'bar',
 		          options3d: {
@@ -362,39 +385,57 @@ angular.module('starter.controllers', [])
 		              fontWeight: 'bold'
 		          }
 		      }
-		  },
+		  }
 
-		  //The below properties are watched separately for changes.
+		};
 
-		  //Series object (optional) - a list of series using normal highcharts series options.
+
+		$scope.chartConfig = {
+		    options: {
+		      chart: {
+		          type: 'bar',
+		          options3d: {
+		              enabled: true,
+		              alpha: 10,
+		              beta: 0,
+		              depth: 90
+            	  }
+		      },
+		      tooltip: {
+		          style: {
+		              padding: 10,
+		              fontWeight: 'bold'
+		          }
+		      }
+		    },
+		  credits: {
+            enabled: false
+          },
 		  series: [{
 		  	name: 'Consumo',
 		    data: consumo,
-		    colorByPoint: true
+		    // colorByPoint: true
 		  }],
 		  // drilldown: {
     //         series: drilldownSeries
     //       },
-		  //Title configuration (optional)
 		  title: {
 		     text: 'Consumo de Bebidas'
 		  },
-		  //Boolean to control showng loading status on chart (optional)
-		  //Could be a string if you want to show specific loading text.
 		  loading: false,
-		  //Configuration for the xAxis (optional). Currently only one x axis can be dynamically controlled.
-		  //properties currentMin and currentMax provied 2-way binding to the chart's maximimum and minimum
 		  xAxis: {
-            categories: bebida
+            categories: bebida,
+            title: {
+          		text:'Bebida'
+          	}
+            
           },
-		  //Whether to use HighStocks instead of HighCharts (optional). Defaults to false.
+          yAxis:{
+          	title: {
+          		text:'Consumo'
+          	}
+          },
 		  useHighStocks: false,
-		  //size (optional) if left out the chart will default to size of the div or something sensible.
-		  // size: {
-		  //  width: 900,
-		  //  height: 500
-		  // },
-		  //function (optional)
 		  func: function (chart) {
 		   //setup some logic for the chart
 		  }

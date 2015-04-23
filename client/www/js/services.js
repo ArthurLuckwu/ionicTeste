@@ -90,7 +90,7 @@ angular.module('starter.services', [])
 .factory('DadosJson', function($http) { 
 	return{
 		all: function(){
-		  	return $http.get('http://10.40.0.223:3000/teste/allpg') 
+		  	return $http.get('http://localhost:3000/teste/all') 
 		        .success(function(data) { 
 		          return data; 
 		        }) 

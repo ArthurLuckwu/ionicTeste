@@ -18,10 +18,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       StatusBar.styleDefault();
     }
     
-    db = $cordovaSQLite.openDB("my.db");
-    //db = window.openDatabase ("my.db", "1.0", "Cordova Demo", 200000);
-    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS people (id integer primary key, firstname text, lastname text)");
-    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS grafico (id integer primary key, mes text, valor integer)");
+    // db = $cordovaSQLite.openDB("my.db");
+    // //db = window.openDatabase ("my.db", "1.0", "Cordova Demo", 200000);
+    // $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS people (id integer primary key, firstname text, lastname text)");
+    // $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS grafico (id integer primary key, mes text, valor integer)");
 
     });
 })
