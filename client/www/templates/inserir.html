@@ -1,0 +1,22 @@
+<ion-view view-title="inserir">
+  <ion-content>
+    <h1>Inserir</h1>
+
+    <form ng-submit="insert(dados)">
+      <div class="list">
+        <label>Nome: </label>
+        <label class="item item-input">
+          <input type="text" ng-model="dados.firstname">
+        </label>
+        <label>Sobrenome: </label>
+        <label class="item item-input">
+          <input type="text" ng-model="dados.lastname">
+        </label>
+      </div>
+      <div class="padding">
+        <button type="submit" class="button button-block button-positive">Enviar</button>
+      </div>
+
+    </form>
+  </ion-content>
+</ion-view>
