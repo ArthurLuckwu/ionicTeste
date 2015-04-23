@@ -87,6 +87,20 @@ angular.module('starter.services', [])
 })
 
 
+.factory('DadosJson', function($http) { 
+	return{
+		all: function(){
+		  	return $http.get('http://10.40.0.223:3000/teste/allpg') 
+		        .success(function(data) { 
+		          return data; 
+		        }) 
+		        .error(function(err) { 
+		          return err; 
+		        }); 
+		}
+	}
+});
+
 
 // .factory('Lista', function($cordovaSQLite){
 // 	db = $cordovaSQLite.openDB("my.db");
@@ -109,3 +123,4 @@ angular.module('starter.services', [])
 //         });
 
 // })
+

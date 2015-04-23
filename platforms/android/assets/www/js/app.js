@@ -92,6 +92,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
   .state('app.highchart', {
     url: '/highchart',
+    cache: false,
     views: {
       'menuContent': {
         templateUrl: "templates/highchart.html",

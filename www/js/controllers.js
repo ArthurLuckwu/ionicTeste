@@ -104,7 +104,7 @@ angular.module('starter.controllers', [])
 	// }
 })
 
-.controller('Grafico', function($scope, $cordovaSQLite, GetDadosGrafico){
+.controller('Grafico', function($scope, $cordovaSQLite, GetDadosGrafico, DadosJson){
 	$scope.mes = [];
 	$scope.valor = [];
 	$scope.dados = [];
@@ -124,44 +124,214 @@ angular.module('starter.controllers', [])
 	    });
 	}
 
-	GetDadosGrafico.all().then(function(resultado){
-		for(var i=0; i < resultado.length; i++){
+	// GetDadosGrafico.all().then(function(resultado){
+	// 	for(var i=0; i < resultado.length; i++){
+	// 		var d= {
+	// 	        value: resultado[i].valor,
+	// 	        color: cor[i],
+	// 	        highlight: "#90EE90",
+	// 	        label: resultado[i].mes
+	// 	    };
+	// 	    $scope.dados.push(d);
+	// 	    $scope.mes.push(resultado[i].mes);
+	// 	    $scope.valor.push(resultado[i].valor);
+	// 	}
+
+	// 	$scope.chart = {
+	// 	    labels: $scope.mes,
+	// 	    datasets : [
+	// 	        {
+	// 	            fillColor : "rgba(151,187,205,0)",
+	// 	            strokeColor : "#e67e22",
+	// 	            pointColor : "rgba(151,187,205,0)",
+	// 	            pointStrokeColor : "#e67e22",
+	// 	            data : $scope.valor
+	// 	        }
+	// 	    ] 
+	// 	};
+	// });
+
+	DadosJson.all().then(function(data){
+		bebida = [];
+		consumo = [];
+		$scope.json = data.data;
+		// console.log(data.data[0].bebida)
+
+		for(var i = 0; i < data.data.length; i++){
+			bebida.push(data.data[i].bebida)
+			consumo.push(data.data[i].consumo)
+
 			var d= {
-		        value: resultado[i].valor,
+		        value: data.data[i].bebida,
 		        color: cor[i],
 		        highlight: "#90EE90",
-		        label: resultado[i].mes
+		        label: data.data[i].consumo
 		    };
 		    $scope.dados.push(d);
-		    $scope.mes.push(resultado[i].mes);
-		    $scope.valor.push(resultado[i].valor);
+		    // $scope.mes.push(resultado[i].mes);
+		    // $scope.valor.push(resultado[i].valor);
+
 		}
 
+		console.log($scope.dados)
+
 		$scope.chart = {
-		    labels: $scope.mes,
+		    labels: bebida,
 		    datasets : [
 		        {
 		            fillColor : "rgba(151,187,205,0)",
 		            strokeColor : "#e67e22",
 		            pointColor : "rgba(151,187,205,0)",
 		            pointStrokeColor : "#e67e22",
-		            data : $scope.valor
+		            data :consumo
 		        }
 		    ] 
 		};
 	});
+
 })
 
-.controller('Highchart', function($scope, GetDadosGrafico){
+.controller('Highchart', function($scope, GetDadosGrafico, DadosJson){
 	$scope.teste = "Teste";
 	$scope.mes = [];
 	$scope.valor = [];
 
-	GetDadosGrafico.all().then(function(resultado){
-		for(var i=0; i < resultado.length; i++){
-		    $scope.mes.push(resultado[i].mes);
-		    $scope.valor.push(resultado[i].valor);
+	// GetDadosGrafico.all().then(function(resultado){
+	// 	for(var i=0; i < resultado.length; i++){
+	// 	    $scope.mes.push(resultado[i].mes);
+	// 	    $scope.valor.push(resultado[i].valor);
+	// 	}
+
+	// 	$scope.chartConfig = {
+        
+	// 	  options: {
+	// 	      //This is the Main Highcharts chart config. Any Highchart options are valid here.
+	// 	      //will be overriden by values specified below.
+	// 	      chart: {
+	// 	          type: 'column',
+	// 	          // options3d: {
+	// 	          //     enabled: true,
+	// 	          //     alpha: 10,
+	// 	          //     beta: 25,
+	// 	          //     depth: 70
+ //            // 	  }
+	// 	      },
+	// 	      tooltip: {
+	// 	          style: {
+	// 	              padding: 10,
+	// 	              fontWeight: 'bold'
+	// 	          }
+	// 	      }
+	// 	  },
+
+	// 	  //The below properties are watched separately for changes.
+
+	// 	  //Series object (optional) - a list of series using normal highcharts series options.
+	// 	  series: [{
+	// 	     data: $scope.valor
+	// 	  }],
+	// 	  //Title configuration (optional)
+	// 	  title: {
+	// 	     text: 'Hello'
+	// 	  },
+	// 	  //Boolean to control showng loading status on chart (optional)
+	// 	  //Could be a string if you want to show specific loading text.
+	// 	  loading: false,
+	// 	  //Configuration for the xAxis (optional). Currently only one x axis can be dynamically controlled.
+	// 	  //properties currentMin and currentMax provied 2-way binding to the chart's maximimum and minimum
+	// 	  xAxis: {
+ //            categories: $scope.mes
+ //          },
+	// 	  //Whether to use HighStocks instead of HighCharts (optional). Defaults to false.
+	// 	  useHighStocks: false,
+	// 	  //size (optional) if left out the chart will default to size of the div or something sensible.
+	// 	  // size: {
+	// 	  //  width: 900,
+	// 	  //  height: 500
+	// 	  // },
+	// 	  //function (optional)
+	// 	  func: function (chart) {
+	// 	   //setup some logic for the chart
+	// 	  }
+ //    	}
+		
+
+				
+	// });
+
+	// mes = ['Janeiro','Fevereiro','Março','Abril'];
+	// valor = [40, 70, 30, 90];
+
+	// $scope.chartConfig = {
+        
+	// 	  options: {
+	// 	      //This is the Main Highcharts chart config. Any Highchart options are valid here.
+	// 	      //will be overriden by values specified below.
+	// 	      chart: {
+	// 	          type: 'column',
+	// 	          options3d: {
+	// 	              enabled: true,
+	// 	              alpha: 0,
+	// 	              beta: 0,
+	// 	              depth: 90
+ //            	  }
+	// 	      },
+	// 	      tooltip: {
+	// 	          style: {
+	// 	              padding: 10,
+	// 	              fontWeight: 'bold'
+	// 	          }
+	// 	      }
+	// 	  },
+
+	// 	  //The below properties are watched separately for changes.
+
+	// 	  //Series object (optional) - a list of series using normal highcharts series options.
+	// 	  series: [{
+	// 	  	name: 'Meses',
+	// 	    data: valor,
+	// 	    colorByPoint: true
+	// 	  }],
+	// 	  // drilldown: {
+ //    //         series: drilldownSeries
+ //    //       },
+	// 	  //Title configuration (optional)
+	// 	  title: {
+	// 	     text: 'Hello'
+	// 	  },
+	// 	  //Boolean to control showng loading status on chart (optional)
+	// 	  //Could be a string if you want to show specific loading text.
+	// 	  loading: false,
+	// 	  //Configuration for the xAxis (optional). Currently only one x axis can be dynamically controlled.
+	// 	  //properties currentMin and currentMax provied 2-way binding to the chart's maximimum and minimum
+	// 	  xAxis: {
+ //            categories: mes
+ //          },
+	// 	  //Whether to use HighStocks instead of HighCharts (optional). Defaults to false.
+	// 	  useHighStocks: false,
+	// 	  //size (optional) if left out the chart will default to size of the div or something sensible.
+	// 	  // size: {
+	// 	  //  width: 900,
+	// 	  //  height: 500
+	// 	  // },
+	// 	  //function (optional)
+	// 	  func: function (chart) {
+	// 	   //setup some logic for the chart
+	// 	  }
+ //    }
+
+    DadosJson.all().then(function(data){
+		bebida = [];
+		consumo = [];
+		$scope.json = data.data;
+		// console.log(data.data[0].bebida)
+
+		for(var i = 0; i < data.data.length; i++){
+			bebida.push(data.data[i].bebida)
+			consumo.push(data.data[i].consumo)
 		}
+
+		// console.log(bebida)
 
 		$scope.chartConfig = {
         
@@ -169,13 +339,13 @@ angular.module('starter.controllers', [])
 		      //This is the Main Highcharts chart config. Any Highchart options are valid here.
 		      //will be overriden by values specified below.
 		      chart: {
-		          type: 'column',
-		          // options3d: {
-		          //     enabled: true,
-		          //     alpha: 10,
-		          //     beta: 25,
-		          //     depth: 70
-            // 	  }
+		          type: 'bar',
+		          options3d: {
+		              enabled: true,
+		              alpha: 10,
+		              beta: 0,
+		              depth: 90
+            	  }
 		      },
 		      tooltip: {
 		          style: {
@@ -189,76 +359,16 @@ angular.module('starter.controllers', [])
 
 		  //Series object (optional) - a list of series using normal highcharts series options.
 		  series: [{
-		     data: $scope.valor
-		  }],
-		  //Title configuration (optional)
-		  title: {
-		     text: 'Hello'
-		  },
-		  //Boolean to control showng loading status on chart (optional)
-		  //Could be a string if you want to show specific loading text.
-		  loading: false,
-		  //Configuration for the xAxis (optional). Currently only one x axis can be dynamically controlled.
-		  //properties currentMin and currentMax provied 2-way binding to the chart's maximimum and minimum
-		  xAxis: {
-            categories: $scope.mes
-          },
-		  //Whether to use HighStocks instead of HighCharts (optional). Defaults to false.
-		  useHighStocks: false,
-		  //size (optional) if left out the chart will default to size of the div or something sensible.
-		  // size: {
-		  //  width: 900,
-		  //  height: 500
-		  // },
-		  //function (optional)
-		  func: function (chart) {
-		   //setup some logic for the chart
-		  }
-    	}
-		
-
-				
-	});
-
-	mes = ['Janeiro','Fevereiro','Março','Abril'];
-	valor = [40, 70, 30, 90];
-
-	$scope.chartConfig = {
-        
-		  options: {
-		      //This is the Main Highcharts chart config. Any Highchart options are valid here.
-		      //will be overriden by values specified below.
-		      chart: {
-		          type: 'column',
-		          // options3d: {
-		          //     enabled: true,
-		          //     alpha: 10,
-		          //     beta: 25,
-		          //     depth: 70
-            // 	  }
-		      },
-		      tooltip: {
-		          style: {
-		              padding: 10,
-		              fontWeight: 'bold'
-		          }
-		      }
-		  },
-
-		  //The below properties are watched separately for changes.
-
-		  //Series object (optional) - a list of series using normal highcharts series options.
-		  series: [{
-		  	name: 'Meses',
-		    data: valor,
+		  	name: 'Consumo',
+		    data: consumo,
 		    colorByPoint: true
 		  }],
-		  drilldown: {
-            series: drilldownSeries
-          }
+		  // drilldown: {
+    //         series: drilldownSeries
+    //       },
 		  //Title configuration (optional)
 		  title: {
-		     text: 'Hello'
+		     text: 'Consumo de Bebidas'
 		  },
 		  //Boolean to control showng loading status on chart (optional)
 		  //Could be a string if you want to show specific loading text.
@@ -266,7 +376,7 @@ angular.module('starter.controllers', [])
 		  //Configuration for the xAxis (optional). Currently only one x axis can be dynamically controlled.
 		  //properties currentMin and currentMax provied 2-way binding to the chart's maximimum and minimum
 		  xAxis: {
-            categories: mes
+            categories: bebida
           },
 		  //Whether to use HighStocks instead of HighCharts (optional). Defaults to false.
 		  useHighStocks: false,
@@ -279,16 +389,9 @@ angular.module('starter.controllers', [])
 		  func: function (chart) {
 		   //setup some logic for the chart
 		  }
-    	}
-		
+    }
 
-				
-	
-	
-
-	
-	
-	
+    })
 
 })
 
