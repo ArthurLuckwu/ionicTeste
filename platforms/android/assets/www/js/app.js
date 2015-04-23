@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 var db = null;
 
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova', 'angles'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova', 'angles', "highcharts-ng"])
 
 .run(function($ionicPlatform, $cordovaSQLite) {
   $ionicPlatform.ready(function() {
@@ -90,6 +90,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     }           
   })
 
+  .state('app.highchart', {
+    url: '/highchart',
+    views: {
+      'menuContent': {
+        templateUrl: "templates/highchart.html",
+        controller: 'Highchart'
+      }
+    }           
+  })
   
 
   // if none of the above states are matched, use this as the fallback
