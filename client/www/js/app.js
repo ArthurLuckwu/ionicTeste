@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 var db = null;
 
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova', 'angles', "highcharts-ng"])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova', 'angles', "highcharts-ng", 'starter.directives'])
 
 .run(function($ionicPlatform, $cordovaSQLite) {
   $ionicPlatform.ready(function() {
@@ -42,12 +42,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   })
       
 
-  // .state('app.index', {
-  //   url: '/',
-  //   templateUrl: 'index.html',
-  //   controller: 'Teste'
-        
-  // })
   
   .state('app.home', {
     url: '/home',
@@ -103,6 +97,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/home');
+  $urlRouterProvider.otherwise('/app/highchart');
 
 });

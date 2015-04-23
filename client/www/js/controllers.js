@@ -370,22 +370,8 @@ angular.module('starter.controllers', [])
 
 		$scope.optionsColumn = {
 			options: {
-		      chart: {
-		          type: 'bar',
-		          options3d: {
-		              enabled: true,
-		              alpha: 10,
-		              beta: 0,
-		              depth: 90
-            	  }
-		      },
-		      tooltip: {
-		          style: {
-		              padding: 10,
-		              fontWeight: 'bold'
-		          }
-		      }
-		  }
+		    	type: 'bar',
+		  	}
 
 		};
 
@@ -393,7 +379,7 @@ angular.module('starter.controllers', [])
 		$scope.chartConfig = {
 		    options: {
 		      chart: {
-		          type: 'bar',
+		          // type: 'bar',
 		          options3d: {
 		              enabled: true,
 		              alpha: 10,
