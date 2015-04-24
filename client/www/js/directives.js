@@ -31,9 +31,6 @@ angular.module('starter.directives', []).directive('chart', function() {
                 if ($attrs.tridim)
                     $scope.chartData.chart.options3d.enabled = $attrs.tridim;
 
-
-                console.log($scope.chartData)
-                
                 $scope.chartObj = new Highcharts.Chart($scope.chartData);
                 
                 
