@@ -1,15 +1,14 @@
 <ion-view view-title="Highchart">
 <ion-content>
-        
-       
-    
-    {{ teste }}   
-
-
-    <highchart id="chart" config="chartConfig" options="optionsColumn" ></highchart>
-  
-
-  	<!-- <hichart id="teste" chartType="column" ctrl="Highchart" chartHeight="80" width="120"></hichart> -->
+	<div>
+		<chart id="c1" value="chartConfig" type="column" tridim="true" chart-obj='chartObj' ></chart>
+	</div>
+	<div>
+		<chart id="c2" value="chartConfig" type="bar" tridim="true" chart-obj='teste' ></chart>
+	</div>
+	<chart id="c3" value="chartConfig" type="line" tridim="true" chart-obj='chartObj'></chart>
+	
+  	<chart id="c4" value="chartConfig" type="bar" tridim="true" chart-obj='chartObj'></chart>
 
 </ion-content>
 </ion-view>
