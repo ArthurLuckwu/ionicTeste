@@ -183,12 +183,28 @@ angular.module('starter.controllers', [])
 	});
 
 })
+.controller('ConfigCtrl', function($scope,$rootScope) {
+	$scope.title = "Configuração";
+	var serverArray = $rootScope.urlServer.split(':');
+	
+	$scope.serverIp = serverArray[0];
+	$scope.serverPort = serverArray[1];
+	
 
+	$scope.saveConfig = function(serverIp,serverPort) {
+		console.log("Url "+serverIp+':'+serverPort);
+		$rootScope.urlServer = serverIp+':'+serverPort;
+	}
+})
 .controller('Highchart', function($scope, GetDadosGrafico, DadosJson){
 	$scope.teste = "Teste";
 	$scope.mes = [];
 	$scope.valor = [];
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 130abb27e3099e8ee3e1a9a2286d08e7aff19614
     DadosJson.all().then(function(data){
 		bebida = [];
 		consumo = [];

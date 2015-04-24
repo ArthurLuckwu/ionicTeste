@@ -1,1 +1,0 @@
-/home/arthur/testeIonic/teste/plugins/io.litehelpers.cordova.sqliteStorage/www/SQLitePlugin.js
