@@ -192,7 +192,6 @@ angular.module('starter.controllers', [])
 	
 
 	$scope.saveConfig = function(serverIp,serverPort) {
-		console.log("Url "+serverIp+':'+serverPort);
 		$rootScope.urlServer = serverIp+':'+serverPort;
 	}
 })

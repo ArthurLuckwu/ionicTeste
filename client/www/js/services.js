@@ -90,7 +90,6 @@ angular.module('starter.services', [])
 .factory('DadosJson', function($http,$rootScope) { 
 	return{
 		all: function(){
-			console.log($rootScope.urlServer);
 		  	return $http.get('http://'+$rootScope.urlServer+'/teste/all') 
 		        .success(function(data) { 
 		          return data; 
