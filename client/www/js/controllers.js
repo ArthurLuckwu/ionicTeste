@@ -183,8 +183,13 @@ angular.module('starter.controllers', [])
 	});
 
 })
-.controller('ConfigCtrl', function($scope,$rootScope) {
+.controller('ConfigCtrl', function($scope,$rootScope,$timeout) {
 	$scope.title = "Configuração";
+
+	$scope.data = {
+    isLoading: false
+  	};
+
 	var serverArray = $rootScope.urlServer.split(':');
 	
 	$scope.serverIp = serverArray[0];
@@ -193,6 +198,10 @@ angular.module('starter.controllers', [])
 
 	$scope.saveConfig = function(serverIp,serverPort) {
 		$rootScope.urlServer = serverIp+':'+serverPort;
+		$scope.data = { isLoading: true};
+		$timeout(function() {
+			$scope.data = { isLoading: false};
+		}, 2000);
 	}
 })
 .controller('Highchart', function($scope, GetDadosGrafico, DadosJson){

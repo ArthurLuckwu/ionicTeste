@@ -1,5 +1,8 @@
 <ion-view view-title="{{title}}">
-	<ion-content>
+	<div class="bar bar-success bar-balanced" ng-if="data.isLoading">
+      Salvo com sucesso
+    </div>
+	<ion-content ng-class="{'has-loading': data.isLoading}">
 	<h2>Servidor - {{serverIp}}:{{serverPort}}</h2>
 	<div class="list">
 	        <label class="item item-input">
