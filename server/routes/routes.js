@@ -50,8 +50,6 @@ router.post("/insertdatapg",function(req,res){
 	    return console.error('could not connect to postgres', err);
 	  }
 
-	  console.log("deu certo");
-
 	  for (var i = 0; i <10; i++) {
 	  	client.query('INSERT into consumo (bebida, consumo) VALUES($1, $2)', 
 	            ['cerveja'+i, random.integer(0,100)], 
@@ -61,7 +59,7 @@ router.post("/insertdatapg",function(req,res){
 	                	console.log(err);
 	                	res.status(500);
 	                }
-
+	                client.end();
 	            });        
 		}
 
@@ -82,6 +80,7 @@ router.get("/allpg", function(req,res) {
 	 client.query('SELECT bebida, consumo FROM consumo', 
             function(err, result) {
             	if(err) {return res.json({message: "Erro"})};
+            	client.end();
                 return res.json(result.rows);
             });        
 	});
