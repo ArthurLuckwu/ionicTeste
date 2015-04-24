@@ -5,9 +5,12 @@
 // the 2nd parameter is an array of 'requires'
 var db = null;
 
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova', 'angles', "highcharts-ng"])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova', 'angles', "highcharts-ng", 'starter.directives'])
 
-.run(function($ionicPlatform, $cordovaSQLite) {
+.run(function($ionicPlatform, $rootScope, $cordovaSQLite) {
+
+  $rootScope.urlServer = 'localhost:3000';
+
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -18,10 +21,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       StatusBar.styleDefault();
     }
     
-    db = $cordovaSQLite.openDB("my.db");
-    //db = window.openDatabase ("my.db", "1.0", "Cordova Demo", 200000);
-    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS people (id integer primary key, firstname text, lastname text)");
-    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS grafico (id integer primary key, mes text, valor integer)");
+    // db = $cordovaSQLite.openDB("my.db");
+    // //db = window.openDatabase ("my.db", "1.0", "Cordova Demo", 200000);
+    // $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS people (id integer primary key, firstname text, lastname text)");
+    // $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS grafico (id integer primary key, mes text, valor integer)");
 
     });
 })
@@ -39,49 +42,41 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     abstract: true,
     templateUrl: "templates/menu.html"
     // controller: 'AppCtrl'
-  })
-      
-
-  // .state('app.index', {
-  //   url: '/',
-  //   templateUrl: 'index.html',
-  //   controller: 'Teste'
+  })     
+  // .state('app.home', {
+  //   url: '/home',
+  //   views: {
+  //     'menuContent': {
+  //       templateUrl: "index.html",
+  //       controller: 'Teste'
+  //     }
+  //   }
         
   // })
-  
-  .state('app.home', {
-    url: '/home',
-    views: {
-      'menuContent': {
-        templateUrl: "index.html",
-        controller: 'Teste'
-      }
-    }
-        
-  })
 
-  .state('app.inserir', {
-    url: '/inserir',
-    views: {
-      'menuContent': {
-        templateUrl: "templates/inserir.html",
-        controller: 'FactoryInsert'
-      }
-    }           
-  })
+  // .state('app.inserir', {
+  //   url: '/inserir',
+  //   views: {
+  //     'menuContent': {
+  //       templateUrl: "templates/inserir.html",
+  //       controller: 'FactoryInsert'
+  //     }
+  //   }           
+  // })
 
-  .state('app.info', {
-    url: '/info',
-    views: {
-      'menuContent': {
-        templateUrl: "templates/info.html",
-        controller: 'InfoCtrl'
-      }
-    }  
-  })
+  // .state('app.info', {
+  //   url: '/info',
+  //   views: {
+  //     'menuContent': {
+  //       templateUrl: "templates/info.html",
+  //       controller: 'InfoCtrl'
+  //     }
+  //   }  
+  // })
 
   .state('app.grafico', {
     url: '/grafico',
+    cache: false,
     views: {
       'menuContent': {
         templateUrl: "templates/grafico.html",
@@ -100,9 +95,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     }           
   })
-  
-
+.state('app.configuration', {
+    url: '/configuration',
+    views: {
+      'menuContent': {
+        templateUrl: "templates/configuration.html",
+        controller: 'ConfigCtrl'
+      }
+    }           
+  })
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/home');
+  $urlRouterProvider.otherwise('/app/configuration');
 
 });

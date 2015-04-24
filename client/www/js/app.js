@@ -43,39 +43,40 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     templateUrl: "templates/menu.html"
     // controller: 'AppCtrl'
   })     
-  .state('app.home', {
-    url: '/home',
-    views: {
-      'menuContent': {
-        templateUrl: "index.html",
-        controller: 'Teste'
-      }
-    }
+  // .state('app.home', {
+  //   url: '/home',
+  //   views: {
+  //     'menuContent': {
+  //       templateUrl: "index.html",
+  //       controller: 'Teste'
+  //     }
+  //   }
         
-  })
+  // })
 
-  .state('app.inserir', {
-    url: '/inserir',
-    views: {
-      'menuContent': {
-        templateUrl: "templates/inserir.html",
-        controller: 'FactoryInsert'
-      }
-    }           
-  })
+  // .state('app.inserir', {
+  //   url: '/inserir',
+  //   views: {
+  //     'menuContent': {
+  //       templateUrl: "templates/inserir.html",
+  //       controller: 'FactoryInsert'
+  //     }
+  //   }           
+  // })
 
-  .state('app.info', {
-    url: '/info',
-    views: {
-      'menuContent': {
-        templateUrl: "templates/info.html",
-        controller: 'InfoCtrl'
-      }
-    }  
-  })
+  // .state('app.info', {
+  //   url: '/info',
+  //   views: {
+  //     'menuContent': {
+  //       templateUrl: "templates/info.html",
+  //       controller: 'InfoCtrl'
+  //     }
+  //   }  
+  // })
 
   .state('app.grafico', {
     url: '/grafico',
+    cache: false,
     views: {
       'menuContent': {
         templateUrl: "templates/grafico.html",
@@ -104,6 +105,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     }           
   })
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/home');
+  $urlRouterProvider.otherwise('/app/configuration');
 
 });

@@ -200,10 +200,6 @@ angular.module('starter.controllers', [])
 	$scope.mes = [];
 	$scope.valor = [];
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 130abb27e3099e8ee3e1a9a2286d08e7aff19614
     DadosJson.all().then(function(data){
 		bebida = [];
 		consumo = [];
