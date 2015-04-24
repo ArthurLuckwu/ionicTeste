@@ -110,52 +110,11 @@ angular.module('starter.controllers', [])
 	$scope.dados = [];
 	cor = ['blue', '#FFFF00', 'green', '#00BFFF', 'pink', 'orange', 'gray', '#FF5A5E', '#FDB45C', '#FFC870', '#5AD3D1', '#FF5A5E' ];
 
-	$scope.inserir = function(){
-		db = $cordovaSQLite.openDB("my.db");
-		var query = "INSERT INTO grafico (mes, valor) VALUES ('Janeiro', 25),('Fevereiro', 45),('Março', 70),('Abril', 90),('Maio', 10),"+
-	    "('Junho', 20),('Julho', 50),('Agosto', 80),('Setembro', 85),('Outubro', 100),('Novembro', 75),('Dezembro', 60)";
-	    $cordovaSQLite.execute(db, query).then(function(result) {
-	        return true
-	        console.log("Inserido com sucesso!")
-	        
-	    }, function (err) {
-	        console.error(err);
-	        return err;
-	    });
-	}
-
-	// GetDadosGrafico.all().then(function(resultado){
-	// 	for(var i=0; i < resultado.length; i++){
-	// 		var d= {
-	// 	        value: resultado[i].valor,
-	// 	        color: cor[i],
-	// 	        highlight: "#90EE90",
-	// 	        label: resultado[i].mes
-	// 	    };
-	// 	    $scope.dados.push(d);
-	// 	    $scope.mes.push(resultado[i].mes);
-	// 	    $scope.valor.push(resultado[i].valor);
-	// 	}
-
-	// 	$scope.chart = {
-	// 	    labels: $scope.mes,
-	// 	    datasets : [
-	// 	        {
-	// 	            fillColor : "rgba(151,187,205,0)",
-	// 	            strokeColor : "#e67e22",
-	// 	            pointColor : "rgba(151,187,205,0)",
-	// 	            pointStrokeColor : "#e67e22",
-	// 	            data : $scope.valor
-	// 	        }
-	// 	    ] 
-	// 	};
-	// });
 
 	DadosJson.all().then(function(data){
 		bebida = [];
 		consumo = [];
 		$scope.json = data.data;
-		// console.log(data.data[0].bebida)
 
 		for(var i = 0; i < data.data.length; i++){
 			bebida.push(data.data[i].bebida)
@@ -170,9 +129,6 @@ angular.module('starter.controllers', [])
 
 		    $scope.dados.push(d);
 		    
-		    // $scope.mes.push(resultado[i].mes);
-		    // $scope.valor.push(resultado[i].valor);
-
 		}
 
 		console.log($scope.dados)
@@ -244,12 +200,14 @@ angular.module('starter.controllers', [])
 	$scope.mes = [];
 	$scope.valor = [];
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 130abb27e3099e8ee3e1a9a2286d08e7aff19614
     DadosJson.all().then(function(data){
 		bebida = [];
 		consumo = [];
 		$scope.json = data.data;
-		// console.log(data.data[0].bebida)
 
 		for(var i = 0; i < data.data.length; i++){
 			bebida.push(data.data[i].bebida)
@@ -263,59 +221,67 @@ angular.module('starter.controllers', [])
 
 		};
 
-
-		$scope.chartConfig = {
-		    options: {
-		      chart: {
-		          // type: 'bar',
+    	$scope.chartConfig={
+    		  chart:{
+    		  	type: 'bar',
 		          options3d: {
-		              enabled: true,
-		              alpha: 10,
+		              enabled: false,
+		              alpha: 20,
 		              beta: 0,
 		              depth: 90
             	  }
-		      },
-		      tooltip: {
-		          style: {
+            	},	
+			  title: {
+			    text: "Consumo de Bebidas"
+			  },
+			  subtitle: {
+			    text: "Gráfico de Teste"
+			  },
+			  credits: {
+	            enabled: false
+    	      },
+			  xAxis: {
+			    categories: bebida,
+	            title: {
+	          		text:'Bebida'
+	          	}
+			  },
+			  yAxis:{
+	          	title: {
+	          		text:'Consumo'
+	          	}
+	          },
+			  tooltip: {
+			  	style: {
 		              padding: 10,
 		              fontWeight: 'bold'
-		          }
-		      }
-		    },
-		  credits: {
-            enabled: false
-          },
-		  series: [{
-		  	name: 'Consumo',
-		    data: consumo,
-		    // colorByPoint: true
-		  }],
-		  // drilldown: {
-    //         series: drilldownSeries
-    //       },
-		  title: {
-		     text: 'Consumo de Bebidas'
-		  },
-		  loading: false,
-		  xAxis: {
-            categories: bebida,
-            title: {
-          		text:'Bebida'
-          	}
-            
-          },
-          yAxis:{
-          	title: {
-          		text:'Consumo'
-          	}
-          },
-		  useHighStocks: false,
-		  func: function (chart) {
-		   //setup some logic for the chart
-		  }
-    }
-
+		      }},
+			  plotOptions: {
+			    area: {
+			      pointStart: 1940,
+			      marker: {
+			        enabled: false,
+			        symbol: "circle",
+			        radius: 2,
+			        states: {
+			          hover: {
+			            enabled: true
+			          }
+			        }
+			      }
+			    }
+			  },
+			  series: [
+				{
+				  	name: 'Consumo',
+				    data: consumo,
+				    // colorByPoint: true
+			  	}
+		    ]
+	    	}
     })
+
+	
 
 })
 

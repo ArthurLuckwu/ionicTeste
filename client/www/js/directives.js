@@ -1,42 +1,44 @@
-angular.module('starter.directives', ['starter.controllers'])
+'use strict';
 
-.directive('hichart', function () {
+angular.module('starter.directives', []).directive('chart', function() {
+    return {
+        restrict: 'E',
+        template: '<div></div>',
+        scope: {
+            chartData: "=value",
+            chartObj: "=?"
+        },
+        transclude: true,
+        replace: true,
+        link: function($scope, $element, $attrs) {
 
-  return {
-    restrict: 'E',
-    transclude: true,
-    controller: Highchart,
-    template: '<div></div>',
+            //Update when charts data changes
+            $scope.$watch('chartData', function(value) {
+                if (!value)
+                    return;
 
-    replace: true,
-    link: function (scope, element, attrs) {
-     
-        var chart1 = new Highcharts.Chart({
-          chart: {
-            renderTo: attrs.id,
-            type: attrs.charttype,
-            height: attrs.chartheight,
-            animation: false
-          },
-          xAxis: {
-            categories: scope.chartCategories,
-            labels: {
-              step: scope.chartStep
+                // Initiate the chartData.chart if it doesn't exist yet
+                $scope.chartData.chart = $scope.chartData.chart || {};
 
-            }
-          },
-          yAxis: {
-            title: {
-              text: ''
-            }
-          },
-          series: [{
-            data: scope.chartData,
-            name: attrs.chartname
-          }]
+                // use default values if nothing is specified in the given settings
+                $scope.chartData.chart.renderTo = $attrs.id
+                if ($attrs.type)
+                    $scope.chartData.chart.type = $attrs.type;
+                if ($attrs.height)
+                    $scope.chartData.chart.height = $scope.chartData.chart.height || $attrs.height;
+                if ($attrs.width)
+                    $scope.chartData.chart.width = $scope.chartData.chart.type || $attrs.width;
+                if ($attrs.tridim)
+                    $scope.chartData.chart.options3d.enabled = $attrs.tridim;
 
-        });
-      
-    }
-  };
-})
+
+                console.log($scope.chartData)
+                
+                $scope.chartObj = new Highcharts.Chart($scope.chartData);
+                
+                
+            });
+        }
+    };
+
+});
