@@ -227,135 +227,24 @@ angular.module('starter.controllers', [])
 	});
 
 })
+.controller('ConfigCtrl', function($scope,$rootScope) {
+	$scope.title = "Configuração";
+	var serverArray = $rootScope.urlServer.split(':');
+	
+	$scope.serverIp = serverArray[0];
+	$scope.serverPort = serverArray[1];
+	
 
+	$scope.saveConfig = function(serverIp,serverPort) {
+		console.log("Url "+serverIp+':'+serverPort);
+		$rootScope.urlServer = serverIp+':'+serverPort;
+	}
+})
 .controller('Highchart', function($scope, GetDadosGrafico, DadosJson){
 	$scope.teste = "Teste";
 	$scope.mes = [];
 	$scope.valor = [];
 
-	// GetDadosGrafico.all().then(function(resultado){
-	// 	for(var i=0; i < resultado.length; i++){
-	// 	    $scope.mes.push(resultado[i].mes);
-	// 	    $scope.valor.push(resultado[i].valor);
-	// 	}
-
-	// 	$scope.chartConfig = {
-        
-	// 	  options: {
-	// 	      //This is the Main Highcharts chart config. Any Highchart options are valid here.
-	// 	      //will be overriden by values specified below.
-	// 	      chart: {
-	// 	          type: 'column',
-	// 	          // options3d: {
-	// 	          //     enabled: true,
-	// 	          //     alpha: 10,
-	// 	          //     beta: 25,
-	// 	          //     depth: 70
- //            // 	  }
-	// 	      },
-	// 	      tooltip: {
-	// 	          style: {
-	// 	              padding: 10,
-	// 	              fontWeight: 'bold'
-	// 	          }
-	// 	      }
-	// 	  },
-
-	// 	  //The below properties are watched separately for changes.
-
-	// 	  //Series object (optional) - a list of series using normal highcharts series options.
-	// 	  series: [{
-	// 	     data: $scope.valor
-	// 	  }],
-	// 	  //Title configuration (optional)
-	// 	  title: {
-	// 	     text: 'Hello'
-	// 	  },
-	// 	  //Boolean to control showng loading status on chart (optional)
-	// 	  //Could be a string if you want to show specific loading text.
-	// 	  loading: false,
-	// 	  //Configuration for the xAxis (optional). Currently only one x axis can be dynamically controlled.
-	// 	  //properties currentMin and currentMax provied 2-way binding to the chart's maximimum and minimum
-	// 	  xAxis: {
- //            categories: $scope.mes
- //          },
-	// 	  //Whether to use HighStocks instead of HighCharts (optional). Defaults to false.
-	// 	  useHighStocks: false,
-	// 	  //size (optional) if left out the chart will default to size of the div or something sensible.
-	// 	  // size: {
-	// 	  //  width: 900,
-	// 	  //  height: 500
-	// 	  // },
-	// 	  //function (optional)
-	// 	  func: function (chart) {
-	// 	   //setup some logic for the chart
-	// 	  }
- //    	}
-		
-
-				
-	// });
-
-	// mes = ['Janeiro','Fevereiro','Março','Abril'];
-	// valor = [40, 70, 30, 90];
-
-	// $scope.chartConfig = {
-        
-	// 	  options: {
-	// 	      //This is the Main Highcharts chart config. Any Highchart options are valid here.
-	// 	      //will be overriden by values specified below.
-	// 	      chart: {
-	// 	          type: 'column',
-	// 	          options3d: {
-	// 	              enabled: true,
-	// 	              alpha: 0,
-	// 	              beta: 0,
-	// 	              depth: 90
- //            	  }
-	// 	      },
-	// 	      tooltip: {
-	// 	          style: {
-	// 	              padding: 10,
-	// 	              fontWeight: 'bold'
-	// 	          }
-	// 	      }
-	// 	  },
-
-	// 	  //The below properties are watched separately for changes.
-
-	// 	  //Series object (optional) - a list of series using normal highcharts series options.
-	// 	  series: [{
-	// 	  	name: 'Meses',
-	// 	    data: valor,
-	// 	    colorByPoint: true
-	// 	  }],
-	// 	  // drilldown: {
- //    //         series: drilldownSeries
- //    //       },
-	// 	  //Title configuration (optional)
-	// 	  title: {
-	// 	     text: 'Hello'
-	// 	  },
-	// 	  //Boolean to control showng loading status on chart (optional)
-	// 	  //Could be a string if you want to show specific loading text.
-	// 	  loading: false,
-	// 	  //Configuration for the xAxis (optional). Currently only one x axis can be dynamically controlled.
-	// 	  //properties currentMin and currentMax provied 2-way binding to the chart's maximimum and minimum
-	// 	  xAxis: {
- //            categories: mes
- //          },
-	// 	  //Whether to use HighStocks instead of HighCharts (optional). Defaults to false.
-	// 	  useHighStocks: false,
-	// 	  //size (optional) if left out the chart will default to size of the div or something sensible.
-	// 	  // size: {
-	// 	  //  width: 900,
-	// 	  //  height: 500
-	// 	  // },
-	// 	  //function (optional)
-	// 	  func: function (chart) {
-	// 	   //setup some logic for the chart
-	// 	  }
- //    }
 
     DadosJson.all().then(function(data){
 		bebida = [];

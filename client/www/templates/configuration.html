@@ -1,0 +1,16 @@
+<ion-view view-title="{{title}}">
+	<ion-content>
+	<h2>Servidor - {{serverIp}}:{{serverPort}}</h2>
+	<div class="list">
+	        <label class="item item-input">
+	          <span class="input-label">IP do Servidor</span>
+	          <input ng-model="serverIp" type="text" >
+	        </label>
+	        <label class="item item-input">
+	          <span class="input-label">Porta</span>
+	          <input ng-model="serverPort" type="text" >
+	        </label>
+	        <button class="button button-positive" ng-click="saveConfig(serverIp,serverPort)">Salvar</button>
+	      </div>
+	</ion-content>
+</ion-view>

@@ -87,10 +87,11 @@ angular.module('starter.services', [])
 })
 
 
-.factory('DadosJson', function($http) { 
+.factory('DadosJson', function($http,$rootScope) { 
 	return{
 		all: function(){
-		  	return $http.get('http://localhost:3000/teste/all') 
+			console.log($rootScope.urlServer);
+		  	return $http.get('http://'+$rootScope.urlServer+'/teste/all') 
 		        .success(function(data) { 
 		          return data; 
 		        }) 

@@ -7,7 +7,10 @@ var db = null;
 
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova', 'angles', "highcharts-ng", 'starter.directives'])
 
-.run(function($ionicPlatform, $cordovaSQLite) {
+.run(function($ionicPlatform, $rootScope, $cordovaSQLite) {
+
+  $rootScope.urlServer = 'localhost:3000';
+
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -39,10 +42,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     abstract: true,
     templateUrl: "templates/menu.html"
     // controller: 'AppCtrl'
-  })
-      
-
-  
+  })     
   .state('app.home', {
     url: '/home',
     views: {
@@ -94,9 +94,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     }           
   })
-  
-
+.state('app.configuration', {
+    url: '/configuration',
+    views: {
+      'menuContent': {
+        templateUrl: "templates/configuration.html",
+        controller: 'ConfigCtrl'
+      }
+    }           
+  })
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/highchart');
+  $urlRouterProvider.otherwise('/app/home');
 
 });
