@@ -18,7 +18,7 @@ MongoClient.connect("mongodb://localhost:27017/dataDb", function(err, db) {
   	collection.insert(doc, {w:1}, function(err, result) {});
 
   }	
-
+  db.close();
   res.status(200);
 
 });
@@ -32,6 +32,7 @@ router.get("/all", function(req,res){
 		var collection = db.collection('consumo');
 		collection.find().toArray(function(err, items) {
 			if(err) {return res.json({message: "Erro"})};
+			db.close();
 			return res.json(items)
 		});
 
