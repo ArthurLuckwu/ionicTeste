@@ -92,10 +92,11 @@ angular.module('starter.services', [])
 		all: function(){
 		  	return $http.get('http://'+$rootScope.urlServer+'/teste/all') 
 		        .success(function(data) { 
-		          return data; 
+		          	return data; 
 		        }) 
 		        .error(function(err) { 
-		          return err; 
+		        	console.log("No results found");
+		          	return err; 
 		        }); 
 		}
 	}

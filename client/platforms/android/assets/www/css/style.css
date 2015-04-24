@@ -1,1 +1,44 @@
 /* Empty. Add your own CSS if you like */
+.bar.bar-success {
+  display: block;
+  height: 30px;
+  
+  /* starts right below a normal header */
+  top: 44px;
+  
+  /* make the text centered vertically and horizontally */
+  text-align: center;
+  padding: 1px;
+  line-height: 30px;
+  font-weight: bold;
+  padding-bottom: 1px;
+
+  /* transition 'sliding down' (check below)*/
+  -webkit-transition: 200ms all;
+}
+
+
+/* 
+ * make the content's top changes animate.
+ * might not always look good, but looks
+ * good when our loader is added & removed
+ */
+.has-header {
+  -webkit-transition: 200ms top;
+}
+.has-header.has-loading {
+  /* 44px (header) + 30px */
+  top: 70px;
+}
+
+/* make loading bar slide up/down */
+.bar-success.ng-enter,
+.bar-success.ng-leave.ng-leave-active {
+  height: 0;
+  border-width: 0px;
+}
+.bar-success.ng-enter.ng-enter-active,
+.bar-success.ng-leave {
+  height: 30px;
+  border-width: 1px;
+}

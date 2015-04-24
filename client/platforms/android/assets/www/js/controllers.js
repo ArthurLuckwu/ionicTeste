@@ -133,39 +133,39 @@ angular.module('starter.controllers', [])
 
 		console.log($scope.dados)
 
-		$scope.dadoss = [
-		    {
-		        value: 300,
-		        color:"#F7464A",
-		        highlight: "#FF5A5E",
-		        label: "Red"
-		    },
-		    {
-		        value: 50,
-		        color: "#46BFBD",
-		        highlight: "#5AD3D1",
-		        label: "Green"
-		    },
-		    {
-		        value: 100,
-		        color: "#FDB45C",
-		        highlight: "#FFC870",
-		        label: "Yellow"
-		    },
-		    {
-		        value: 40,
-		        color: "#949FB1",
-		        highlight: "#A8B3C5",
-		        label: "Grey"
-		    },
-		    {
-		        value: 120,
-		        color: "#4D5360",
-		        highlight: "#616774",
-		        label: "Dark Grey"
-		    }
+		// $scope.dadoss = [
+		//     {
+		//         value: 300,
+		//         color:"#F7464A",
+		//         highlight: "#FF5A5E",
+		//         label: "Red"
+		//     },
+		//     {
+		//         value: 50,
+		//         color: "#46BFBD",
+		//         highlight: "#5AD3D1",
+		//         label: "Green"
+		//     },
+		//     {
+		//         value: 100,
+		//         color: "#FDB45C",
+		//         highlight: "#FFC870",
+		//         label: "Yellow"
+		//     },
+		//     {
+		//         value: 40,
+		//         color: "#949FB1",
+		//         highlight: "#A8B3C5",
+		//         label: "Grey"
+		//     },
+		//     {
+		//         value: 120,
+		//         color: "#4D5360",
+		//         highlight: "#616774",
+		//         label: "Dark Grey"
+		//     }
 
-		];
+		// ];
 		
 
 		$scope.chart = {
@@ -176,15 +176,20 @@ angular.module('starter.controllers', [])
 		            strokeColor : "#e67e22",
 		            pointColor : "rgba(151,187,205,0)",
 		            pointStrokeColor : "#e67e22",
-		            data :consumo
+		            data : consumo
 		        }
 		    ] 
 		};
 	});
 
 })
-.controller('ConfigCtrl', function($scope,$rootScope) {
+.controller('ConfigCtrl', function($scope,$rootScope,$timeout) {
 	$scope.title = "Configuração";
+
+	$scope.data = {
+    isLoading: false
+  	};
+
 	var serverArray = $rootScope.urlServer.split(':');
 	
 	$scope.serverIp = serverArray[0];
@@ -193,88 +198,125 @@ angular.module('starter.controllers', [])
 
 	$scope.saveConfig = function(serverIp,serverPort) {
 		$rootScope.urlServer = serverIp+':'+serverPort;
+		$scope.data = { isLoading: true};
+		$timeout(function() {
+			$scope.data = { isLoading: false};
+		}, 2000);
 	}
 })
 .controller('Highchart', function($scope, GetDadosGrafico, DadosJson){
 	$scope.teste = "Teste";
 	$scope.mes = [];
 	$scope.valor = [];
+	$scope.dados = [];
+
+	$scope.tipo = "pie"
 
     DadosJson.all().then(function(data){
 		bebida = [];
 		consumo = [];
-		$scope.json = data.data;
+		consumobebida = [];
 
 		for(var i = 0; i < data.data.length; i++){
 			bebida.push(data.data[i].bebida)
 			consumo.push(data.data[i].consumo)
+
+		    consumobebida.push([data.data[i].bebida, data.data[i].consumo]);
 		}
 
-		$scope.optionsColumn = {
-			options: {
-		    	type: 'bar',
-		  	}
+		console.log(consumobebida);
 
-		};
+			
 
     	$scope.chartConfig={
-    		  chart:{
+    		chart:{
     		  	type: 'bar',
-		          options3d: {
-		              enabled: false,
-		              alpha: 20,
-		              beta: 0,
-		              depth: 90
-            	  }
-            	},	
-			  title: {
+		    	options3d: {
+		            enabled: false,
+		            alpha: 20,
+		            beta: 0,
+		            depth: 90
+            	}
+            },	
+			title: {
 			    text: "Consumo de Bebidas"
-			  },
-			  subtitle: {
+			},
+			subtitle: {
 			    text: "Gráfico de Teste"
-			  },
-			  credits: {
+			},
+			credits: {
 	            enabled: false
-    	      },
-			  xAxis: {
+    	    },
+			xAxis: {
 			    categories: bebida,
 	            title: {
 	          		text:'Bebida'
 	          	}
-			  },
-			  yAxis:{
+			},
+			yAxis:{
 	          	title: {
 	          		text:'Consumo'
 	          	}
-	          },
-			  tooltip: {
+	        },
+			tooltip: {
 			  	style: {
 		              padding: 10,
 		              fontWeight: 'bold'
-		      }},
-			  plotOptions: {
-			    area: {
-			      pointStart: 1940,
-			      marker: {
-			        enabled: false,
-			        symbol: "circle",
-			        radius: 2,
-			        states: {
-			          hover: {
-			            enabled: true
-			          }
-			        }
-			      }
-			    }
-			  },
-			  series: [
+		    	}
+		    },
+			plotOptions: {},
+			series: [
 				{
-				  	name: 'Consumo',
-				    data: consumo,
-				    // colorByPoint: true
-			  	}
-		    ]
-	    	}
+			  		name: 'Consumo',
+			    	data: consumo,
+			    	// colorByPoint: true
+				}
+			],
+
+    	}	
+
+    	$scope.chartPie={
+    		chart:{
+    			type: 'bar',
+		        options3d: {
+		            enabled: false,
+		            alpha: 20,
+		        	beta: 0,
+		            depth: 90
+            	}
+        	},	
+			title: {
+			    text: "Consumo de Bebidas"
+			},
+			subtitle: {
+			    text: "Gráfico de Teste"
+			},
+			credits: {
+	            enabled: false
+    	    },
+			xAxis: {
+			    categories: bebida,
+	            title: {
+	          		text:'Bebida'
+	          	}
+			},
+			yAxis:{
+	          	title: {
+	          		text:'Consumo'
+	          	}
+	        },
+			tooltip: {
+			  	style: {
+		              padding: 10,
+		              fontWeight: 'bold'
+		    	}
+		    },
+			plotOptions: {},
+		  	series: [ {
+	            name: 'Consumo',
+	            data: consumobebida
+	        }],
+    	}	
     })
 
 	
