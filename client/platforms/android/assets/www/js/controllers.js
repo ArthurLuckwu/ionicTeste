@@ -213,7 +213,7 @@ angular.module('starter.controllers', [])
 	$scope.tipo = "pie"
 
     DadosJson.all().then(function(data){
-		bebida = [];
+    	bebida = [];
 		consumo = [];
 		consumobebida = [];
 
@@ -223,10 +223,6 @@ angular.module('starter.controllers', [])
 
 		    consumobebida.push([data.data[i].bebida, data.data[i].consumo]);
 		}
-
-		console.log(consumobebida);
-
-			
 
     	$scope.chartConfig={
     		chart:{
